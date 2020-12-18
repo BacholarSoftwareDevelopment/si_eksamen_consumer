@@ -16,7 +16,7 @@ public class ConsumerService
 {
     private static final Logger logger = LoggerFactory.getLogger(ConsumerService.class);
     private Gson jsonParser = new Gson();
-    private FileReadAndWrite messageData = new FileReadAndWrite();
+    private FileReadAndWrite messageUserData = new FileReadAndWrite();
 
 
     @KafkaListener(
@@ -28,8 +28,8 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        messageData.writeMessageToFile(message,topic);
-        Message consumedMessage = jsonParser.fromJson(message, Message.class);
+        Message messageObject = jsonParser.fromJson(message, Message.class);
+        messageUserData.writeMessageToFile(message,messageObject);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",
@@ -48,8 +48,8 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        messageData.writeMessageToFile(message,topic);
-        Message consumedMessage = jsonParser.fromJson(message, Message.class);
+        Message messageObject = jsonParser.fromJson(message, Message.class);
+        messageUserData.writeMessageToFile(message,messageObject);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",
@@ -68,8 +68,8 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        messageData.writeMessageToFile(message,topic);
-        Message consumedMessage = jsonParser.fromJson(message, Message.class);
+        Message messageObject = jsonParser.fromJson(message, Message.class);
+        messageUserData.writeMessageToFile(message,messageObject);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",

@@ -3,19 +3,16 @@ package dk.si.consumer.files;
 import dk.si.consumer.model.Message;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileReadAndWrite {
 
-    private final String HOTEL =   "src/main/resources/hotel_messages.txt";
-    private final String Airport = "src/main/resources/airport_messages.txt";
-    private final String Tourism = "src/main/resources/tourism_messages.txt";
-    private String filename;
+    private static String filename;
 
-    public void writeMessageToFile(String message, String topic) {
-        //Write JSON file
-        if(topic.equals("hotel")){filename = HOTEL;}
-        if(topic.equals("airport")){filename = Airport;}
-        if(topic.equals("tourism")){filename = Tourism;}
+    public void writeMessageToFile(String message, Message messageObject) {
+
+        filename = "src/main/resources/messageFiles/" + messageObject.getId() + "_" + messageObject.getTopic();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
         writer.append('\n');
@@ -26,17 +23,37 @@ public class FileReadAndWrite {
 
     }
 
-    public void readMessageFromFile() {
-        try (FileReader reader = new FileReader(filename))
-        {
-            System.out.println(reader);
+    public static List<String> readMessageFromFile(String userId, String topic) throws IOException {
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        filename = "src/main/resources/messageFiles/" + userId + "_" + topic;
+
+        List<String> result = new ArrayList<>();
+        BufferedReader br = null;
+
+        try {
+
+            br = new BufferedReader(new FileReader(filename));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                result.add(line);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (br != null) {
+                br.close();
+            }
         }
+        return result;
     }
 
+    public static void main(String[] args) throws IOException {
+        List<String> list = readMessageFromFile("1", "tourism");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+    }
 }
 

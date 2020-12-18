@@ -1,3 +1,0 @@
-{"id":8,"topic":"airport","name":"Karl:","city":"Lyngby:","message":"System Integration"}
-{"id":8,"topic":"airport","name":"Karl:","city":"Lyngby:","message":"System Integration"}
-{"id":8,"topic":"airport","name":"Karl:","city":"Lyngby:","message":"System Integration"}
