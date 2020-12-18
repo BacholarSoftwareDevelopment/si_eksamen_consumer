@@ -22,7 +22,7 @@ public class MessageResource {
 
 
     @GetMapping("/message/{userId}/{topic}")
-    public List<String> getMessageByIdAndTopic(@PathVariable("userId") String userId, @PathVariable("topic") String topic) throws IOException {
+    public List<Message> getMessageByIdAndTopic(@PathVariable("userId") String userId, @PathVariable("topic") String topic) throws IOException {
 
         List<String> stringList = messageUserData.readMessageFromFile(userId, topic);
         List<Message> messageList = transformStringToMessageObject(stringList);
@@ -34,7 +34,7 @@ public class MessageResource {
                 messageList.get(0).getId(),
                 messageList.get(0).getName());
 
-        return stringList;
+        return messageList;
     }
     
     public List<Message> transformStringToMessageObject(List<String> stringList) {
