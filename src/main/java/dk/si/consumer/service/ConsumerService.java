@@ -11,6 +11,8 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class ConsumerService
 {
@@ -28,8 +30,9 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        Message messageObject = jsonParser.fromJson(message, Message.class);
-        messageUserData.writeMessageToFile(message,messageObject);
+        //Message messageObject = jsonParser.fromJson(message, Message.class);
+        //messageUserData.writeMessageToFile(message,messageObject);
+        messageUserData.writeMessageToFile(message);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",
@@ -48,8 +51,9 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        Message messageObject = jsonParser.fromJson(message, Message.class);
-        messageUserData.writeMessageToFile(message,messageObject);
+        //Message messageObject = jsonParser.fromJson(message, Message.class);
+        //messageUserData.writeMessageToFile(message,messageObject);
+        messageUserData.writeMessageToFile(message);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",
@@ -68,8 +72,9 @@ public class ConsumerService
             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.OFFSET) int offset) {
 
-        Message messageObject = jsonParser.fromJson(message, Message.class);
-        messageUserData.writeMessageToFile(message,messageObject);
+        //Message messageObject = jsonParser.fromJson(message, Message.class);
+        //messageUserData.writeMessageToFile(message,messageObject);
+        messageUserData.writeMessageToFile(message);
 
         System.out.println("Partition: " + partition + " Topic: " + topic + " Offset: " + offset);
         logger.info("Message [{}:{}:{}:{}] consumed",
@@ -78,4 +83,5 @@ public class ConsumerService
                 offset,
                 message);
     }
+
 }
