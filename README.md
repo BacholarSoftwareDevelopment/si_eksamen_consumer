@@ -1,3 +1,5 @@
+**[HOME](https://github.com/BacholarSoftwareDevelopment/si_eksamens_project/blob/main/README.md)**
+
 ## Consumer
 
 **Explained:**
